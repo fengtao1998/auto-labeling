@@ -1,6 +1,6 @@
 name: 'Auto Labeling'
 description: 'Automate labeling on issues and pull requests'
-author: 'harupy'
+author: 'fengtao'
 branding:
   color: 'green'
   icon: 'tag'
@@ -13,6 +13,10 @@ inputs:
   label-pattern:
     description: >
       Pattern (regular expression) to extract label states and names (e.g. '- \[(.*?)\] ?`(.+?)`').
+    required: true
+  
+  bot-name:
+    description: The bot name
     required: true
 
   offset:
