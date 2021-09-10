@@ -1,4 +1,4 @@
-name: 'Auto Labeling'
+name: 'Doc-label-check'
 description: 'Automate labeling on issues and pull requests'
 author: 'fengtao'
 branding:
