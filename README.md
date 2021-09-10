@@ -1,4 +1,4 @@
-# Auto Labeling
+# Doc label check
 
 [![CI](https://github.com/harupy/auto-labeling/workflows/CI/badge.svg)](https://github.com/harupy/auto-labeling/actions?query=workflow%3ACI)
 [![Cron](https://github.com/harupy/auto-labeling/workflows/Cron/badge.svg)](https://github.com/harupy/auto-labeling/actions?query=workflow%3ACron)
@@ -6,11 +6,13 @@
 [![codecov](https://codecov.io/gh/harupy/auto-labeling/branch/master/graph/badge.svg)](https://codecov.io/gh/harupy/auto-labeling)
 [![GitHub marketplace](https://img.shields.io/badge/marketplace-auto--labeling-brightgreen?logo=github)](https://github.com/marketplace/actions/auto-labeling)
 
-A GitHub Action that automates labeling on issues and pull requests.
+A GitHub Action that checks whether the doc label is correct and comment in pull request.
+
+
 
 ## How it works
 
-`auto-labeling` automatically detects [task lists](https://help.github.com/en/github/managing-your-work-on-github/about-task-lists) in the description of an issue or a pull request and adds labels based on their states (checked or unchecked).
+`doc label check` automatically detects [task lists](https://help.github.com/en/github/managing-your-work-on-github/about-task-lists) in the description of an issue or a pull request and adds labels based on their states (checked or unchecked).
 
 ```markdown
 <!-- pull_request_template.md -->
