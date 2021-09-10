@@ -14,27 +14,46 @@ A GitHub Action that automates labeling on issues and pull requests.
 
 ```markdown
 <!-- pull_request_template.md -->
+### Documentation
 
-What kind of change does this PR introduce?
+Check the box below and label this PR (if you have committer privilege).
 
-- [x] `bug-fix`
-- [ ] `new-feature`
-- [ ] `enhancement`
-```
+Need to update docs? 
 
-This description makes `auto-labeling` add `bug-fix`. If someone updates the description as follows:
+- [ ] `doc-required` 
+  
+  (If you need help on updating docs, create a doc issue)
+  
+- [x] `no-need-doc` 
+  
+  (Please explain why)
+  
+- [ ] `doc` 
+  
+  (If this PR contains doc changes)
+
+This description makes `auto-labeling` add `no-need-doc`. If someone updates the description as follows:
 
 ```markdown
-<!-- pull_request_template.md -->
+### Documentation
 
-What kind of change does this PR introduce?
+Check the box below and label this PR (if you have committer privilege).
 
-- [ ] `bug-fix`
-- [ ] `new-feature`
-- [x] `enhancement`
-```
+Need to update docs? 
 
-Then, `auto-labeling` removes `bug-fix` and adds `enhancement`. **Note that unregistered labels are ignored.**
+- [x] `doc-required` 
+  
+  (If you need help on updating docs, create a doc issue)
+  
+- [ ] `no-need-doc` 
+  
+  (Please explain why)
+  
+- [ ] `doc` 
+  
+  (If this PR contains doc changes)
+
+Then, `auto-labeling` removes `no-need-doc` and adds `doc-required`. **Note that unregistered labels are ignored.**
 
 ## Example workflow
 
@@ -42,18 +61,11 @@ Then, `auto-labeling` removes `bug-fix` and adds `enhancement`. **Note that unre
 name: Auto Labeling
 
 on:
-  issues:
-    types:
-      # Trigger the action only on relevant activity types.
-      # It's actually not harmful to trigger the action on all activity types.
-      - opened
-      - edited
-
-on:
   pull_request:
     types:
       - opened
       - edited
+      - labeled
 
 # A GitHub token created for a PR coming from a fork doesn't have
 # 'admin' or 'write' permission (which is required to add labels)
@@ -73,6 +85,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           label-pattern: '- \[(.*?)\] ?`(.+?)`' # matches '- [x] `label`'
+          botname: 'pr-bot-test'
 ```
 
 ## Inputs
@@ -87,6 +100,10 @@ inputs:
     description: >
       Pattern (regular expression) to extract label states and names (e.g. '- \[(.*?)\] ?`(.+?)`').
     required: true
+  
+  bot-name: 
+    description: The bot name
+    required:true
 
   offset:
     description: >
